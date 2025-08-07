@@ -37,7 +37,6 @@ int main() {
         FilterProcessor::processVideo(inputPath, outputPath, filters);
         std::cout << "Video processed and saved to: " << outputPath << std::endl;
 
-        // Загрузка в облако (пример)
         // std::string filename = "output_processed.mp4";
         // std::string s3Url = "s3://" + config.s3_bucket + "/" + filename;
         // std::cout << "Uploaded to: " << s3Url << std::endl;

@@ -2,7 +2,7 @@ BasedOnStyle: WebKit
 IndentWidth: 4
 TabWidth: 4
 UseTab: Never
-BreakBeforeBraces: Attach  # Скобки на той же строке
+BreakBeforeBraces: Attach
 AllowShortIfStatementsOnASingleLine: false
 AllowShortLoopsOnASingleLine: false
 ColumnLimit: 100
