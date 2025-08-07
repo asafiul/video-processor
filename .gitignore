@@ -1,0 +1,7 @@
+build/
+*.o
+*.so
+*.a
+*.exe
+data/*.mp4
+.env

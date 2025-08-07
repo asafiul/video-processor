@@ -1,0 +1,31 @@
+{
+  "s3_bucket": "my-video-bucket",
+  "temp_dir": "../temp",
+  "input_dir": "../data/input",
+  "output_dir": "../data/output",
+  "filters": {
+    "grayscale": {
+      "enabled": false
+    },
+    "blur": {
+      "enabled": false,
+      "kernel_size": 15,
+      "sigma": 0
+    },
+    "sharpen": {
+      "enabled": true,
+      "strength": 3.0
+    },
+    "edge_detect": {
+      "enabled": false,
+      "low_threshold": 100,
+      "high_threshold": 160
+    }
+  },
+  "processing_pipeline": [
+    "blur",
+    "grayscale",
+    "sharpen",
+    "edge_detect"
+  ]
+}
