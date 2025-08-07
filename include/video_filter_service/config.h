@@ -1,9 +1,9 @@
 #pragma once
-#include <fstream>
-#include <nlohmann/json.hpp>
 #include <string>
-#include <unordered_map>
+#include <fstream>
 #include <vector>
+#include <unordered_map>
+#include <nlohmann/json.hpp>
 
 using json = nlohmann::json;
 
@@ -28,29 +28,33 @@ inline AppConfig AppConfig::loadFromFile(const std::string& path) {
     if (!f.is_open()) {
         throw std::runtime_error("Cannot open config file: " + path);
     }
-
+    
     json data = json::parse(f);
-
+    
     AppConfig config;
     config.s3_bucket = data.value("s3_bucket", "default-bucket");
     config.temp_dir = data.value("temp_dir", "./temp");
     config.input_dir = data.value("input_dir", "../data/input");
     config.output_dir = data.value("output_dir", "../data/output");
-
+    
     if (data.contains("processing_pipeline")) {
         for (const auto& filter : data["processing_pipeline"]) {
             config.processing_pipeline.push_back(filter);
         }
     }
-
+    
     if (data.contains("filters")) {
         for (auto& [filterName, filterConfig] : data["filters"].items()) {
             FilterConfig cfg;
             cfg.enabled = filterConfig.value("enabled", true);
-            cfg.parameters = filterConfig;
+            
+            for (auto& [paramName, paramValue] : filterConfig.items()) {
+                cfg.parameters[paramName] = paramValue;
+            }
+            
             config.filter_configs[filterName] = cfg;
         }
     }
-
+    
     return config;
 }
