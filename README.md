@@ -9,4 +9,4 @@ filter configurer in config/
 
 docker (WIP)
 
-v11
+v12
